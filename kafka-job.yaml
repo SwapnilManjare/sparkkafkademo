@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafka-spark-demo
+  namespace: kafka
+spec:
+  template:
+    spec:
+      containers:
+        - name: kafka-spark-demo
+          image: swapnil1994/sparkkakfkaregistry:latest
+      restartPolicy: Never

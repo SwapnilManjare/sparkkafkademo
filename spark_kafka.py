@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.utils import IllegalArgumentException
 from kafka import KafkaAdminClient, KafkaConsumer, TopicPartition
 
-kafka_brokers = os.environ.get('KAFKA_BROKERS', 'kafka-controller-0.kafka-controller-headless.kafka.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.kafka.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.kafka.svc.cluster.local:9092')
+kafka_brokers = os.environ.get('KAFKA_BROKERS', 'kafka-controller-0.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.sparkdemo.svc.cluster.local:9092')
 kafka_topic = os.environ.get('KAFKA_TOPIC', 'demo-topic')
 
 

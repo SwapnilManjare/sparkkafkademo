@@ -31,7 +31,6 @@ spark = SparkSession \
 #    .config("spark.kafka.security.inter.broker.protocol", "SASL_PLAINTEXT") \
 #    .config("spark.kafka.sasl.mechanism", "PLAIN") \
 #    .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1") \
-    .getOrCreate()
 
 df = spark \
     .readStream \

@@ -15,9 +15,8 @@ RUN chmod +x /app/spark_kafka.py
 
 ENV KAFKA_BROKERS='kafka-controller-0.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.sparkdemo.svc.cluster.local:9092'
 ENV KAFKA_TOPIC=demo-topic
-CMD [ "python3", "/app/spark_kafka.py" ]
-
-
+#CMD [ "python3", "/app/spark_kafka.py" ]
+CMD ["spark-submit", "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1", "/app/spark_kafka.py"]
 
 
 

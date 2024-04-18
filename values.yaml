@@ -599,10 +599,10 @@ controller:
   ## @param controller.resourcesPreset Set container resources according to one common preset (allowed values: none, nano, micro, small, medium, large, xlarge, 2xlarge). This is ignored if controller.resources is set (controller.resources is recommended for production).
   ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
   ##
-   resources:
+  resources:
     requests:
       cpu: 500m
-      memory: 1Gi
+      memory: 1G
     limits:
       cpu: 1
       memory: 2Gi

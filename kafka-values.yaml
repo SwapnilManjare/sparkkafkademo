@@ -9,4 +9,7 @@ cp-kafka:
     limits:
       cpu: 1
       memory: 2Gi
-
+  configOverrides:
+    server.properties: |
+      listeners=CLIENT://0.0.0.0:9092,INTERNAL://0.0.0.0:9094,CONTROLLER://0.0.0.0:9093
+      listener.security.protocol.map=CLIENT:SASL_PLAINTEXT,INTERNAL:SASL_PLAINTEXT,CONTROLLER:SASL_PLAINTEXT

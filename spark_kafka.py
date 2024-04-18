@@ -28,6 +28,7 @@ spark = SparkSession \
     .config("spark.kafka.bootstrap.servers", kafka_brokers) \
     .config("spark.kafka.sasl.jaas.config", 'org.apache.kafka.common.security.plain.PlainLoginModule required username="controller_user" password="VfrVZw9Jb9%";') \
     .config("spark.kafka.security.protocol", "SASL_SSL") \
+    .config("spark.kafka.security.inter.broker.protocol", "SASL_SSL") \
     .getOrCreate()
 #    .config("spark.kafka.security.inter.broker.protocol", "SASL_PLAINTEXT") \
 #    .config("spark.kafka.sasl.mechanism", "PLAIN") \

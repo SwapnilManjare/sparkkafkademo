@@ -2,9 +2,8 @@ from time import sleep
 from json import dumps
 from kafka import KafkaProducer
 
-kafka_topic_name = 'demo-topic' 
-kafka_bootstrap_servers = 'kafka-controller-0.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.sparkdemo.svc.cluster.local:9092'
-
+kafka_topic_name = 'my-topic' 
+kafka_bootstrap_servers = 'my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092'
 # Create a Kafka producer
 producer = KafkaProducer(bootstrap_servers=kafka_bootstrap_servers,value_serializer=lambda x: dumps(x).encode('utf-8')) 
 

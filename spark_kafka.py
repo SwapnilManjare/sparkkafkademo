@@ -7,7 +7,7 @@ from pyspark.sql.utils import IllegalArgumentException
 from pyspark.sql.functions import explode, split
 from kafka import KafkaAdminClient, KafkaConsumer, TopicPartition
 
-kafka_brokers = os.environ.get('KAFKA_BROKERS', 'my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092')
+kafka_brokers = os.environ.get('KAFKA_BROKERS', 'my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092')
 kafka_topic = os.environ.get('KAFKA_TOPIC', 'my-topic')
 
 

@@ -11,16 +11,16 @@ kafka_brokers = os.environ.get('KAFKA_BROKERS', 'my-cluster-kafka-0.my-cluster-k
 kafka_topic = os.environ.get('KAFKA_TOPIC', 'my-topic')
 
 
-def create_kafka_topic(topic_name, brokers):
-    try:
-        admin_client = KafkaAdminClient(bootstrap_servers=brokers)
-        topic_list = []
-        topic_list.append(TopicPartition(topic_name, 1))
-        admin_client.create_topics(new_topics=topic_list, validate_only=False)
-    except Exception as e:
-        print(f"Error creating topic {topic_name}: {e}")
+# def create_kafka_topic(topic_name, brokers):
+#     try:
+#         admin_client = KafkaAdminClient(bootstrap_servers=brokers)
+#         topic_list = []
+#         topic_list.append(TopicPartition(topic_name, 1))
+#         admin_client.create_topics(new_topics=topic_list, validate_only=False)
+#     except Exception as e:
+#         print(f"Error creating topic {topic_name}: {e}")
 
-create_kafka_topic(kafka_topic, kafka_brokers)
+# create_kafka_topic(kafka_topic, kafka_brokers)
 
 spark = SparkSession \
     .builder \

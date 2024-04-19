@@ -6,7 +6,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y default-jdk python3 python3-pip procps
 
 COPY requirements.txt /app
-COPY spark_kafka.py producer_script.py startup.sh /app/
+COPY spark_kafka.py producer_script.py startup.sh spark-app.py /app/
 RUN pip3 install pyspark findspark kafka-python 
 #RUN pip3 install -r requirements.txt
 RUN export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64

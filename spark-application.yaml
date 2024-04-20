@@ -7,9 +7,9 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "gcr.io/spark-operator/spark-py:v3.0.0"
+  image: "swapnil1994/sparkkakfkaregistry:latest"
   imagePullPolicy: Always
-  mainApplicationFile: local:///opt/spark/examples/src/main/python/pi.py
+  mainApplicationFile: "local:///app/spark-app.py"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: OnFailure

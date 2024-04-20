@@ -12,6 +12,7 @@ RUN pip3 install pyspark findspark kafka-python
 RUN export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 RUN export PATH=$PATH:$JAVA_HOME/bin
 RUN chmod +x /app/spark_kafka.py 
+RUN chmod +x /app/spark-app.py
 
 ENV KAFKA_BROKERS='kafka-controller-0.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.sparkdemo.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.sparkdemo.svc.cluster.local:9092'
 ENV KAFKA_TOPIC=demo-topic

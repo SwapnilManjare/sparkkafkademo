@@ -1,4 +1,4 @@
-FROM apache/spark:3.1.2
+FROM apache/spark:latest
 
 WORKDIR /app
 

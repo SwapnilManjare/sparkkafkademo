@@ -9,14 +9,15 @@ os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming
 
 
 if __name__ == "__main__":
-    
+
     sc = SparkContext(appName="PythonStreamingRecieverKafkaWordCount")
     ssc = StreamingContext(sc, 2) # 2 second window
-    broker = my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092
-    topic = my-topic
+    broker = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
+    topic = "my-topic"
     kvs = KafkaUtils.createStream(ssc, \
                                   broker, \
-                                  "raw-event-streaming-consumer",\{topic:1}) 
+                                  "raw-event-streaming-consumer", \ 
+                                  "my-topic") 
     lines = kvs.map(lambda x: x[1])
     counts = lines.flatMap(lambda line: line.split(“ “)) 
                   .map(lambda word: (word, 1)) \

@@ -32,9 +32,8 @@ spec:
     memory: "512m"
     labels:
       version: 3.1.1
-  dependencies:
-    jars:
-      - "local:///opt/spark/examples/src/main/python/spark-streaming-kafka-0-10_2.12-3.5.1.jar"
+  sparkConf:
+    "spark.driver.extraClassPath": "local:///opt/spark/examples/src/main/python/spark-streaming-kafka-0-10_2.12-3.5.1.jar"
 
 
 

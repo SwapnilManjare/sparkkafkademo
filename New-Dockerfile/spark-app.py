@@ -1,50 +1,54 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
-
-
-kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
-
+from pyspark.sql.types import StructType, StringType, IntegerType
 
 # Create a SparkSession
 spark = SparkSession.builder \
-    .appName("KafkaSparkIntegration") \
-    .config("spark.kafka.bootstrap.servers", kafka_bootstrap_servers) \
-    .config("spark.kafka.security.protocol", "SASL_SSL") \
-    .config("spark.kafka.security.inter.broker.protocol", "SASL_SSL") \
+    .appName("KafkaSparkStreamingExample") \
     .getOrCreate()
+
+# Define the schema for the incoming Kafka messages
+schema = StructType() \
+    .add("number", IntegerType())
 
 # Define the Kafka topic to subscribe to
 kafka_topic_name = "my-topic"
 
-# # Define the Kafka broker(s)
-# kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
+# Define the Kafka bootstrap servers
+kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
 
-# Define the schema for the incoming data
-schema = StructType([
-    StructField("number", IntegerType())
-])
+# Define the Kafka source configuration
+kafka_source_options = {
+    "kafka.bootstrap.servers": kafka_bootstrap_servers,
+    "subscribe": kafka_topic_name,
+    "startingOffsets": "earliest"
+}
 
-# Create a DataFrame representing the stream of input lines from Kafka
+# Read data from Kafka into a DataFrame
 kafka_df = spark \
     .readStream \
     .format("kafka") \
-    .option("kafka.bootstrap.servers", kafka_bootstrap_servers) \
-    .option("subscribe", kafka_topic_name) \
+    .options(**kafka_source_options) \
     .load()
 
-# Convert the value column to string and then to JSON format based on the defined schema
-parsed_df = kafka_df.selectExpr("CAST(value AS STRING)") \
-    .select(from_json("value", schema).alias("data")) \
+# Deserialize the value column from JSON format
+parsed_df = kafka_df \
+    .selectExpr("CAST(value AS STRING)") \
+    .select(from_json(col("value"), schema).alias("data")) \
     .select("data.*")
 
-# Define any processing logic you want to apply to the data
-# For example, you can print the incoming numbers
-query = parsed_df \
+# Perform basic operations (e.g., count, aggregation)
+result_df = parsed_df.groupBy().avg("number")
+
+# Write the result to the console
+query = result_df \
     .writeStream \
-    .outputMode("append") \
+    .outputMode("complete") \
     .format("console") \
     .start()
 
-# Start the streaming query
+# Wait for the query to terminate
 query.awaitTermination()
+
+# Stop the SparkSession
+spark.stop()

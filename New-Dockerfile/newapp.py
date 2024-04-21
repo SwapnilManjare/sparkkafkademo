@@ -9,6 +9,7 @@ os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming
 
 
 if __name__ == "__main__":
+    
     sc = SparkContext(appName="PythonStreamingRecieverKafkaWordCount")
     ssc = StreamingContext(sc, 2) # 2 second window
     broker = my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092

@@ -11,7 +11,7 @@ spec:
 #  image: "apache/spark:3.5.1-python3"
   image: "swapnil1994/sparkkakfkaregistry:newsparkapp"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///opt/spark/examples/src/main/python/spark-application.yaml"
+  mainApplicationFile: "local:///opt/spark/examples/src/main/python/spark-app.py"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: OnFailure

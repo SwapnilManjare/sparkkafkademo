@@ -11,7 +11,7 @@ if __name__=="__main__":
 
     ssc=StreamingContext(sc,60)
 
-    message=KafkaUtils.createStream(ssc,topics=['my-topic'],kafkaParams= {"metadata.broker.list":"my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"})
+    message=KafkaUtils.createDirectStream(ssc,topics=['my-topic'],kafkaParams= {"metadata.broker.list":"my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"})
 
     words=message.map(lambda x: x[1]).flatMap(lambda x: x.split(" "))
 

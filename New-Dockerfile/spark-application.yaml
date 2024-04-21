@@ -1,0 +1,100 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: pyspark-pi
+  namespace: sparkdemo02
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  mainClass: org.apache.spark.examples.SparkPi
+#  image: "apache/spark:3.5.1-python3"
+  image: "swapnil1994/sparkkakfkaregistry:newsparkapp"
+  imagePullPolicy: Always
+  mainApplicationFile: "local:///opt/spark/examples/src/main/python/spark-application.py"
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: OnFailure
+    onFailureRetries: 3
+    onFailureRetryInterval: 10
+    onSubmissionFailureRetries: 5
+    onSubmissionFailureRetryInterval: 20
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    labels:
+      version: 3.1.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# apiVersion: "sparkoperator.k8s.io/v1beta2"
+# kind: SparkApplication
+# metadata:
+#   name: spark-example
+#   namespace: sparkdemo02
+# spec:
+#   type: Python
+#   pythonVersion: "3"
+#   mode: cluster
+#   image: swapnil1994/sparkkakfkaregistry:latest
+#   imagePullPolicy: Always
+#   mainApplicationFile: "local:///app/spark-app.py"
+#   sparkVersion: "3.1.2"
+#   driver:
+#     cores: 1
+#     coreLimit: "1200m"
+#     memory: "512m"
+#     labels:
+#       version: "3.1.2"
+#     serviceAccount: spark-operator
+#   executor:
+#     cores: 1
+#     instances: 1
+#     memory: "512m"
+#     labels:
+#       version: "3.1.2"
+#   restartPolicy:
+#     type: OnFailure
+#     onFailureRetries: 3
+#     onFailureRetryInterval: 10
+#     onSubmissionFailureRetries: 5
+#     onSubmissionFailureRetryInterval: 20

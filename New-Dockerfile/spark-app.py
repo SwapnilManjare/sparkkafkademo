@@ -5,6 +5,9 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 # Create a SparkSession
 spark = SparkSession.builder \
     .appName("KafkaSparkIntegration") \
+    .config("spark.kafka.bootstrap.servers", kafka_brokers) \
+    .config("spark.kafka.security.protocol", "SASL_SSL") \
+    .config("spark.kafka.security.inter.broker.protocol", "SASL_SSL") \
     .getOrCreate()
 
 # Define the Kafka topic to subscribe to

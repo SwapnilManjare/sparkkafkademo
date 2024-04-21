@@ -7,9 +7,10 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "swapnil1994/sparkkakfkaregistry:1.0"
+  mainClass: org.apache.spark.examples.SparkPi
+  image: "apache/spark:3.5.1-python3"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///app/spark-app.py"
+  mainApplicationFile: "local:///opt/spark/examples/src/main/python/pi.py"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: OnFailure
@@ -23,7 +24,7 @@ spec:
     memory: "512m"
     labels:
       version: 3.1.1
-    serviceAccount: spark-operator
+    serviceAccount: spark
   executor:
     cores: 1
     instances: 1

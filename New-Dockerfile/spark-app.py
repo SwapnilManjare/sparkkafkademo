@@ -2,6 +2,10 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
+
+kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
+
+
 # Create a SparkSession
 spark = SparkSession.builder \
     .appName("KafkaSparkIntegration") \
@@ -13,8 +17,8 @@ spark = SparkSession.builder \
 # Define the Kafka topic to subscribe to
 kafka_topic_name = "my-topic"
 
-# Define the Kafka broker(s)
-kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
+# # Define the Kafka broker(s)
+# kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
 
 # Define the schema for the incoming data
 schema = StructType([

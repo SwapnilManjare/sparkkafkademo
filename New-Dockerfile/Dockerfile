@@ -2,7 +2,7 @@ FROM apache/spark:3.5.1-python3
 
 COPY spark-app.py /opt/spark/examples/src/main/python
 
-COPY newapp.py /opt/spark/examples/src/main/python
+COPY newapp1.py /opt/spark/examples/src/main/python
 
 USER root
 

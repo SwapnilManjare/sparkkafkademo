@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-KAFKA_BOOTSTRAP_SERVERS = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
+KAFKA_BOOTSTRAP_SERVERS = "kafka-cluster-kafka-0.kafka-cluster-kafka-brokers.kafka-operator.svc.cluster.local:9092"
 KAFKA_TOPIC = "my-topic"
 
 spark = SparkSession.builder.appName("read_test_straeam").getOrCreate()

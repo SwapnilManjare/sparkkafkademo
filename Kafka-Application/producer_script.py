@@ -3,7 +3,7 @@ from json import dumps
 from kafka import KafkaProducer
 
 kafka_topic_name = 'my-topic' 
-kafka_bootstrap_servers = 'kafka-cluster-kafka-0.kafka-cluster-kafka-brokers.kafka-operator.svc.cluster.local:9092'
+kafka_bootstrap_servers = 'my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092,my-cluster-kafka-1.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092,my-cluster-kafka-2.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092'
 # Create a Kafka producer
 producer = KafkaProducer(bootstrap_servers=kafka_bootstrap_servers,value_serializer=lambda x: dumps(x).encode('utf-8')) 
 

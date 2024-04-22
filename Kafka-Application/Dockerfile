@@ -19,13 +19,3 @@ ENV KAFKA_TOPIC='my-topic'
 CMD [ "python3", "/app/spark_kafka.py" ]
 #CMD ["spark-submit", "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1", "/app/spark_kafka.py"]
 #CMD ["bash", "startup.sh"]
-
-
-#FROM python:3.8
-#WORKDIR /app
-#COPY requirements.txt ./
-#RUN pip install -r requirements.txt
-#COPY spark_kafka.py ./
-#ENV KAFKA_BROKERS='10.224.0.7.kafka-controller-headless.kafka.svc.cluster.local:9092,10.224.0.14.kafka-controller-headless.kafka.svc.cluster.local:9092,10.224.0.128.kafka-controller-headless.kafka.svc.cluster.local:9092'
-#ENV KAFKA_TOPIC=demo-topic
-#CMD [ "python", "spark_kafka.py" ]

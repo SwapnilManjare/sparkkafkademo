@@ -16,10 +16,8 @@ RUN export PATH=$PATH:$JAVA_HOME/bin
 
 RUN chmod +x /app/producer_script.py
 
-ENV KAFKA_BROKERS='my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092'
+# ENV KAFKA_BROKERS='my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092'
 
-ENV KAFKA_TOPIC='my-topic'
-
-#CMD [ "python3", "/app/spark_kafka.py" ]
+# ENV KAFKA_TOPIC='my-topic'
 
 CMD ["bash", "startup.sh"]

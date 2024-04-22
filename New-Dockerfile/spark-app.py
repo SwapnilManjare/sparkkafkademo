@@ -20,18 +20,20 @@ kafka_topic_name = "my-topic"
 # Define the Kafka bootstrap servers
 kafka_bootstrap_servers = "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092"
 
-# Define the Kafka source configuration
-kafka_source_options = {
-    "kafka.bootstrap.servers": kafka_bootstrap_servers,
-    "subscribe": kafka_topic_name,
-    "startingOffsets": "earliest"
-}
+# # Define the Kafka source configuration
+# kafka_source_options = {
+#     "kafka.bootstrap.servers": kafka_bootstrap_servers,
+#     "subscribe": kafka_topic_name,
+#     "startingOffsets": "earliest"
+# }
 
 # Read data from Kafka into a DataFrame
 kafka_df = spark \
     .readStream \
     .format("kafka") \
-    .options(**kafka_source_options) \
+    .option("kafka.bootstrap.servers", "my-cluster-kafka-0.my-cluster-kafka-brokers.sparkdemo02.svc.cluster.local:9092") \
+    .option("subscribe", "my-topic") \
+#    .options(**kafka_source_options) \
     .load()
 
 # Deserialize the value column from JSON format

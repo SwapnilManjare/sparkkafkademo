@@ -11,10 +11,12 @@ spec:
 #  image: "apache/spark:3.5.1-python3"
   image: "swapnil1994/sparkkakfkaregistry:newsparkapp"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///opt/spark/examples/src/main/python/spark-app.py"
+  mainApplicationFile: "local:///opt/spark/examples/src/main/python/sampleapp.py"
   deps:
-    jars:
-      - local:///opt/spark/examples/src/main/python/spark-streaming-kafka-0-10_2.12-3.5.1.jar
+    packages:
+      # - org.apache.spark:spark-streaming-kafka-0-10_2.12:3.5.1
+      - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0
+
   sparkVersion: "3.1.1"
   restartPolicy:
     type: OnFailure
